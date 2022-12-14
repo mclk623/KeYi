@@ -5,7 +5,7 @@ Subject: [PATCH] Player Skull API
 
 
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index d13f8f7f5afb772514804ef78e2c704964c3cbd8..52dc40bc7cea12e657885b011a002cb89db00f33 100644
+index 35bff85031b1e1b06af7d2bc1c76540d17ae3f3e..83660113503cd445f9bf7bf6859abaf47015acdb 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -3,6 +3,9 @@ package org.bukkit.entity;
@@ -18,7 +18,7 @@ index d13f8f7f5afb772514804ef78e2c704964c3cbd8..52dc40bc7cea12e657885b011a002cb8
  import com.destroystokyo.paper.ClientOption; // Paper
  import com.destroystokyo.paper.Title; // Paper
  import net.kyori.adventure.text.Component;
-@@ -3071,4 +3074,22 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -3058,4 +3061,22 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       */
      void sendDeathScreen(@NotNull Component message, @Nullable Entity killer);
      // Purpur end
