@@ -1,7 +1,7 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: nostalgic853 <yuu8583@proton.me>
 Date: Fri, 9 Dec 2022 23:13:01 +0800
-Subject: [PATCH] Remove Timings
+Subject: [PATCH] Revert purpur "Remove Profilers"
 
 
 diff --git a/src/main/java/io/papermc/paper/chunk/system/scheduling/ChunkHolderManager.java b/src/main/java/io/papermc/paper/chunk/system/scheduling/ChunkHolderManager.java
@@ -584,7 +584,7 @@ index 75965afd7b4bed23a5ecf618c7f91ff5e7ffd92f..3d78c10a5442bfa5d4beae2546378b38
  
      }
 diff --git a/src/main/java/net/minecraft/server/level/ServerChunkCache.java b/src/main/java/net/minecraft/server/level/ServerChunkCache.java
-index 0ae45cf5a084fd412305e8b2f5dabe608b4eb1c1..0c22b26b20c19735266c8fe11127ad51c947c396 100644
+index 0ae45cf5a084fd412305e8b2f5dabe608b4eb1c1..c6f5d6756fa0e068a462d9c0ded12e0771abba37 100644
 --- a/src/main/java/net/minecraft/server/level/ServerChunkCache.java
 +++ b/src/main/java/net/minecraft/server/level/ServerChunkCache.java
 @@ -431,16 +431,16 @@ public class ServerChunkCache extends ChunkSource {
@@ -719,9 +719,8 @@ index 0ae45cf5a084fd412305e8b2f5dabe608b4eb1c1..0c22b26b20c19735266c8fe11127ad51
 -            //this.level.timings.countNaturalMobs.stopTiming(); // Paper - timings // Purpur
 +            this.level.timings.countNaturalMobs.stopTiming(); // Paper - timings
  
--            //this.lastSpawnState = spawnercreature_d; // Pufferfish - this is managed asynchronously
+             //this.lastSpawnState = spawnercreature_d; // Pufferfish - this is managed asynchronously
 -            //gameprofilerfiller.popPush("filteringLoadedChunks"); // Purpur
-+            this.lastSpawnState = spawnercreature_d;
 +            gameprofilerfiller.popPush("filteringLoadedChunks");
              // Paper - moved down
 -            //this.level.timings.chunkTicks.startTiming(); // Paper // Purpur
