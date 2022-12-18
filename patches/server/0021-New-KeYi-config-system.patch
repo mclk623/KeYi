@@ -75,13 +75,13 @@ index 0000000000000000000000000000000000000000..7b731c9307eb9f2a7ffa629f1716cda2
 \ No newline at end of file
 diff --git a/src/main/java/cc/keyimc/keyi/config/KGlobalConfig.java b/src/main/java/cc/keyimc/keyi/config/KGlobalConfig.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..b9745eb15d1c57416f51f821163eea42e3961917
+index 0000000000000000000000000000000000000000..e4d7655283dee8d2ea0a03f0f42f76907676ed3f
 --- /dev/null
 +++ b/src/main/java/cc/keyimc/keyi/config/KGlobalConfig.java
-@@ -0,0 +1,87 @@
+@@ -0,0 +1,105 @@
 +package cc.keyimc.keyi.config;
 +
-+import com.electronwill.nightconfig.core.file.FileConfig;
++import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 +
 +import java.io.File;
 +import java.io.IOException;
@@ -90,7 +90,7 @@ index 0000000000000000000000000000000000000000..b9745eb15d1c57416f51f821163eea42
 +    private static final KGlobalConfig INSTANCE;
 +
 +    private File file;
-+    private FileConfig fileConfig;
++    private CommentedFileConfig fileConfig;
 +
 +    static {
 +        INSTANCE = new KGlobalConfig();
@@ -120,9 +120,9 @@ index 0000000000000000000000000000000000000000..b9745eb15d1c57416f51f821163eea42
 +            }
 +        }
 +
-+        fileConfig = FileConfig.ofConcurrent(file);
++        fileConfig = CommentedFileConfig.ofConcurrent(file);
 +
-+        initValue();
++        initValues();
 +
 +        fileConfig.save();
 +    }
@@ -150,7 +150,7 @@ index 0000000000000000000000000000000000000000..b9745eb15d1c57416f51f821163eea42
 +    public boolean offlineModeWarning = true;
 +    public boolean proxyUnsafeWarning = true;
 +
-+    private void initValue() {
++    private void initValues() {
 +        verbose = get("verbose", verbose);
 +        version = get("dont-touch-these-values-down-below.version", version);
 +
@@ -164,6 +164,24 @@ index 0000000000000000000000000000000000000000..b9745eb15d1c57416f51f821163eea42
 +        rootUserWarning = get("misc.root-user-warning", rootUserWarning);
 +        offlineModeWarning = get("misc.offline-mode-warning", offlineModeWarning);
 +        proxyUnsafeWarning = get("misc.proxy-unsafe-warning", proxyUnsafeWarning);
++
++        initComments();
++    }
++
++    private void initComments() {
++        fileConfig.setComment("verbose", "Should debug output be enabled? You don't need to change this unless you really know what you need.");
++        fileConfig.setComment("dont-touch-these-values-down-below.version", "DO NOT TOUCH THIS!!!");
++
++        // Performance settings
++        fileConfig.setComment("performance.use-spigot-drops-merging-mechanism", "Should large drops stack should be merged into smaller drops stack?");
++
++        // Bug-fixes settings
++        fileConfig.setComment("bug-fixes.fix-tripwire-duping", "Should Paper's tripwire duping fix be enabled? By disabling this you are able to duping tripwires!");
++
++        // Misc settings
++        fileConfig.setComment("misc.root-user-warning", "Should display warnings while this server is running on a root/administrator user?");
++        fileConfig.setComment("misc.offline-mode-warning", "Should display warnings while this server is running in offline/insecure mode?");
++        fileConfig.setComment("misc.proxy-unsafe-warning", "Should display warnings while this server is running in proxy mode?");
 +    }
 +}
 diff --git a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
