@@ -779,10 +779,10 @@ index 0ae45cf5a084fd412305e8b2f5dabe608b4eb1c1..c6f5d6756fa0e068a462d9c0ded12e07
          }
  
 diff --git a/src/main/java/net/minecraft/server/level/ServerLevel.java b/src/main/java/net/minecraft/server/level/ServerLevel.java
-index 9aebb5166fcd4dbb247295ff0ca8461f83ab3d27..e2dd2917486ccdadc20de7df7b82f22fd3459fd3 100644
+index b396a329e753f42b3878736b6b14bafda02d3744..077ff3d7620e3c48aca59a92014dbdb7de15e79a 100644
 --- a/src/main/java/net/minecraft/server/level/ServerLevel.java
 +++ b/src/main/java/net/minecraft/server/level/ServerLevel.java
-@@ -656,12 +656,12 @@ public class ServerLevel extends Level implements WorldGenLevel {
+@@ -654,12 +654,12 @@ public class ServerLevel extends Level implements WorldGenLevel {
              }
          }
          // Paper end - optimise checkDespawn
@@ -798,7 +798,7 @@ index 9aebb5166fcd4dbb247295ff0ca8461f83ab3d27..e2dd2917486ccdadc20de7df7b82f22f
          this.advanceWeatherCycle();
          int i = this.getGameRules().getInt(GameRules.RULE_PLAYERS_SLEEPING_PERCENTAGE);
          long j;
-@@ -688,32 +688,32 @@ public class ServerLevel extends Level implements WorldGenLevel {
+@@ -686,32 +686,32 @@ public class ServerLevel extends Level implements WorldGenLevel {
  
          this.updateSkyBrightness();
          this.tickTime();
@@ -847,7 +847,7 @@ index 9aebb5166fcd4dbb247295ff0ca8461f83ab3d27..e2dd2917486ccdadc20de7df7b82f22f
          boolean flag = true || !this.players.isEmpty() || !this.getForcedChunks().isEmpty(); // CraftBukkit - this prevents entity cleanup, other issues on servers with no players
  
          if (flag) {
-@@ -721,25 +721,25 @@ public class ServerLevel extends Level implements WorldGenLevel {
+@@ -719,25 +719,25 @@ public class ServerLevel extends Level implements WorldGenLevel {
          }
  
          if (flag || this.emptyTime++ < 300) {
@@ -880,7 +880,7 @@ index 9aebb5166fcd4dbb247295ff0ca8461f83ab3d27..e2dd2917486ccdadc20de7df7b82f22f
                          if (true || this.chunkSource.chunkMap.getDistanceManager().inEntityTickingRange(entity.chunkPosition().toLong())) { // Paper - now always true if in the ticking list
                              Entity entity1 = entity.getVehicle();
  
-@@ -751,7 +751,7 @@ public class ServerLevel extends Level implements WorldGenLevel {
+@@ -749,7 +749,7 @@ public class ServerLevel extends Level implements WorldGenLevel {
                                  entity.stopRiding();
                              }
  
@@ -889,7 +889,7 @@ index 9aebb5166fcd4dbb247295ff0ca8461f83ab3d27..e2dd2917486ccdadc20de7df7b82f22f
                          // Pufferfish start - copied from this.guardEntityTick
                          try {
                              this.tickNonPassenger(entity); // Pufferfish - changed
-@@ -766,19 +766,20 @@ public class ServerLevel extends Level implements WorldGenLevel {
+@@ -764,19 +764,20 @@ public class ServerLevel extends Level implements WorldGenLevel {
                              // Paper end
                          }
                          // Pufferfish end
@@ -915,7 +915,7 @@ index 9aebb5166fcd4dbb247295ff0ca8461f83ab3d27..e2dd2917486ccdadc20de7df7b82f22f
      }
  
      @Override
-@@ -860,9 +861,9 @@ public class ServerLevel extends Level implements WorldGenLevel {
+@@ -858,9 +859,9 @@ public class ServerLevel extends Level implements WorldGenLevel {
          boolean flag = this.isRaining();
          int j = chunkcoordintpair.getMinBlockX();
          int k = chunkcoordintpair.getMinBlockZ();
@@ -927,7 +927,7 @@ index 9aebb5166fcd4dbb247295ff0ca8461f83ab3d27..e2dd2917486ccdadc20de7df7b82f22f
          final BlockPos.MutableBlockPos blockposition = this.chunkTickMutablePosition; // Paper - use mutable to reduce allocation rate, final to force compile fail on change
  
          if (!this.paperConfig().environment.disableThunder && flag && this.isThundering() && this.spigotConfig.thunderChance > 0 && /*this.random.nextInt(this.spigotConfig.thunderChance) == 0 &&*/ chunk.shouldDoLightning(this.random)) { // Spigot // Paper - disable thunder // Pufferfish - replace random with shouldDoLightning
-@@ -900,7 +901,7 @@ public class ServerLevel extends Level implements WorldGenLevel {
+@@ -898,7 +899,7 @@ public class ServerLevel extends Level implements WorldGenLevel {
              }
          }
  
@@ -936,7 +936,7 @@ index 9aebb5166fcd4dbb247295ff0ca8461f83ab3d27..e2dd2917486ccdadc20de7df7b82f22f
          int l;
  
          if (!this.paperConfig().environment.disableIceAndSnow && (this.currentIceAndSnowTick++ & 15) == 0) { // Paper - Disable ice and snow // Paper - optimise random ticking  // Pufferfish - optimize further random ticking
-@@ -952,8 +953,8 @@ public class ServerLevel extends Level implements WorldGenLevel {
+@@ -950,8 +951,8 @@ public class ServerLevel extends Level implements WorldGenLevel {
          }
  
          // Paper start - optimise random block ticking
@@ -947,7 +947,7 @@ index 9aebb5166fcd4dbb247295ff0ca8461f83ab3d27..e2dd2917486ccdadc20de7df7b82f22f
          if (randomTickSpeed > 0) {
              LevelChunkSection[] sections = chunk.getSections();
              int minSection = io.papermc.paper.util.WorldUtil.getMinSection(this);
-@@ -987,8 +988,8 @@ public class ServerLevel extends Level implements WorldGenLevel {
+@@ -985,8 +986,8 @@ public class ServerLevel extends Level implements WorldGenLevel {
              }
          }
          // Paper end - optimise random block ticking
@@ -958,7 +958,7 @@ index 9aebb5166fcd4dbb247295ff0ca8461f83ab3d27..e2dd2917486ccdadc20de7df7b82f22f
      }
  
      public Optional<BlockPos> findLightningRod(BlockPos pos) {
-@@ -1280,24 +1281,24 @@ public class ServerLevel extends Level implements WorldGenLevel {
+@@ -1278,24 +1279,24 @@ public class ServerLevel extends Level implements WorldGenLevel {
          // Spigot end
          // Paper start- timings
          final boolean isActive = org.spigotmc.ActivationRange.checkIfActive(entity);
@@ -991,7 +991,7 @@ index 9aebb5166fcd4dbb247295ff0ca8461f83ab3d27..e2dd2917486ccdadc20de7df7b82f22f
          Iterator iterator = entity.getPassengers().iterator();
  
          while (iterator.hasNext()) {
-@@ -1320,17 +1321,17 @@ public class ServerLevel extends Level implements WorldGenLevel {
+@@ -1318,17 +1319,17 @@ public class ServerLevel extends Level implements WorldGenLevel {
              if (passenger instanceof Player || this.entityTickList.contains(passenger)) {
                  // Paper - EAR 2
                  final boolean isActive = org.spigotmc.ActivationRange.checkIfActive(passenger);
@@ -1015,7 +1015,7 @@ index 9aebb5166fcd4dbb247295ff0ca8461f83ab3d27..e2dd2917486ccdadc20de7df7b82f22f
                  // Paper start - EAR 2
                  if (isActive) {
                  passenger.rideTick();
-@@ -1342,7 +1343,7 @@ public class ServerLevel extends Level implements WorldGenLevel {
+@@ -1340,7 +1341,7 @@ public class ServerLevel extends Level implements WorldGenLevel {
                      vehicle.positionRider(passenger);
                  }
                  // Paper end - EAR 2
@@ -1024,7 +1024,7 @@ index 9aebb5166fcd4dbb247295ff0ca8461f83ab3d27..e2dd2917486ccdadc20de7df7b82f22f
                  Iterator iterator = passenger.getPassengers().iterator();
  
                  while (iterator.hasNext()) {
-@@ -1351,7 +1352,7 @@ public class ServerLevel extends Level implements WorldGenLevel {
+@@ -1349,7 +1350,7 @@ public class ServerLevel extends Level implements WorldGenLevel {
                      this.tickPassenger(passenger, entity2);
                  }
  
@@ -1033,7 +1033,7 @@ index 9aebb5166fcd4dbb247295ff0ca8461f83ab3d27..e2dd2917486ccdadc20de7df7b82f22f
              }
          } else {
              passenger.stopRiding();
-@@ -1371,14 +1372,14 @@ public class ServerLevel extends Level implements WorldGenLevel {
+@@ -1369,14 +1370,14 @@ public class ServerLevel extends Level implements WorldGenLevel {
              org.bukkit.Bukkit.getPluginManager().callEvent(new org.bukkit.event.world.WorldSaveEvent(getWorld()));
          }
  
@@ -1051,7 +1051,7 @@ index 9aebb5166fcd4dbb247295ff0ca8461f83ab3d27..e2dd2917486ccdadc20de7df7b82f22f
  
              // Copied from save()
              // CraftBukkit start - moved from MinecraftServer.saveChunks
-@@ -1390,7 +1391,7 @@ public class ServerLevel extends Level implements WorldGenLevel {
+@@ -1388,7 +1389,7 @@ public class ServerLevel extends Level implements WorldGenLevel {
                  this.convertable.saveDataTag(this.server.registryAccess(), this.serverLevelData, this.server.getPlayerList().getSingleplayerData());
              }
              // CraftBukkit end
@@ -1060,7 +1060,7 @@ index 9aebb5166fcd4dbb247295ff0ca8461f83ab3d27..e2dd2917486ccdadc20de7df7b82f22f
      }
      // Paper end
  
-@@ -1404,7 +1405,7 @@ public class ServerLevel extends Level implements WorldGenLevel {
+@@ -1402,7 +1403,7 @@ public class ServerLevel extends Level implements WorldGenLevel {
  
          if (!savingDisabled) {
              org.bukkit.Bukkit.getPluginManager().callEvent(new org.bukkit.event.world.WorldSaveEvent(getWorld())); // CraftBukkit
@@ -1069,7 +1069,7 @@ index 9aebb5166fcd4dbb247295ff0ca8461f83ab3d27..e2dd2917486ccdadc20de7df7b82f22f
              if (progressListener != null) {
                  progressListener.progressStartNoAbort(Component.translatable("menu.savingLevel"));
              }
-@@ -1414,11 +1415,11 @@ public class ServerLevel extends Level implements WorldGenLevel {
+@@ -1412,11 +1413,11 @@ public class ServerLevel extends Level implements WorldGenLevel {
                  progressListener.progressStage(Component.translatable("menu.savingChunks"));
              }
  
@@ -1085,10 +1085,10 @@ index 9aebb5166fcd4dbb247295ff0ca8461f83ab3d27..e2dd2917486ccdadc20de7df7b82f22f
  
          } else if (close) { chunkproviderserver.close(false); } // Paper - rewrite chunk system
 diff --git a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
-index 86d7552acc7bea0e0a5af4c16b8a0dd3af4e6560..ad3217794361a12a49b20896bf60578c2463a849 100644
+index a37849179a34d0ba5997f7d83c10bd1851135835..7c1534177aa86c48592dd27895fb3a553bec686f 100644
 --- a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
 +++ b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
-@@ -2588,7 +2588,7 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Tic
+@@ -2584,7 +2584,7 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Tic
              }
          }
          // Paper End
@@ -1097,7 +1097,7 @@ index 86d7552acc7bea0e0a5af4c16b8a0dd3af4e6560..ad3217794361a12a49b20896bf60578c
          if ( org.spigotmc.SpigotConfig.logCommands ) // Spigot
          this.LOGGER.info(this.player.getScoreboardName() + " issued server command: " + s);
  
-@@ -2598,7 +2598,7 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Tic
+@@ -2594,7 +2594,7 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Tic
          this.cserver.getPluginManager().callEvent(event);
  
          if (event.isCancelled()) {
@@ -1106,7 +1106,7 @@ index 86d7552acc7bea0e0a5af4c16b8a0dd3af4e6560..ad3217794361a12a49b20896bf60578c
              return;
          }
  
-@@ -2611,7 +2611,7 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Tic
+@@ -2607,7 +2607,7 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Tic
              java.util.logging.Logger.getLogger(ServerGamePacketListenerImpl.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
              return;
          } finally {
@@ -1116,10 +1116,10 @@ index 86d7552acc7bea0e0a5af4c16b8a0dd3af4e6560..ad3217794361a12a49b20896bf60578c
      }
      // CraftBukkit end
 diff --git a/src/main/java/net/minecraft/server/players/PlayerList.java b/src/main/java/net/minecraft/server/players/PlayerList.java
-index 9cfe4f2ab57f6d17a64eda2c48fb59ab7aa14367..23cea7dd67dd1890a8fd34c294d140b30e89f59c 100644
+index 7d5ba99a674855967256b74fd9fd21749dcde8a3..f3fc72e1ddbb65daaab3b5fe1c6210434a434050 100644
 --- a/src/main/java/net/minecraft/server/players/PlayerList.java
 +++ b/src/main/java/net/minecraft/server/players/PlayerList.java
-@@ -1297,7 +1297,7 @@ public abstract class PlayerList {
+@@ -1220,7 +1220,7 @@ public abstract class PlayerList {
  
      public void saveAll(int interval) {
          io.papermc.paper.util.MCUtil.ensureMain("Save Players" , () -> { // Paper - Ensure main
@@ -1128,7 +1128,7 @@ index 9cfe4f2ab57f6d17a64eda2c48fb59ab7aa14367..23cea7dd67dd1890a8fd34c294d140b3
          int numSaved = 0;
          long now = MinecraftServer.currentTick;
          for (int i = 0; i < this.players.size(); ++i) {
-@@ -1308,7 +1308,7 @@ public abstract class PlayerList {
+@@ -1231,7 +1231,7 @@ public abstract class PlayerList {
              }
              // Paper end
          }
