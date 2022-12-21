@@ -66,7 +66,7 @@ index 0000000000000000000000000000000000000000..7b731c9307eb9f2a7ffa629f1716cda2
 \ No newline at end of file
 diff --git a/src/main/java/cc/keyimc/keyi/config/KGlobalConfig.java b/src/main/java/cc/keyimc/keyi/config/KGlobalConfig.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..e4d7655283dee8d2ea0a03f0f42f76907676ed3f
+index 0000000000000000000000000000000000000000..3a82d6bcd92c497ce21e5fd3cf569d5794aedb2e
 --- /dev/null
 +++ b/src/main/java/cc/keyimc/keyi/config/KGlobalConfig.java
 @@ -0,0 +1,105 @@
@@ -160,19 +160,19 @@ index 0000000000000000000000000000000000000000..e4d7655283dee8d2ea0a03f0f42f7690
 +    }
 +
 +    private void initComments() {
-+        fileConfig.setComment("verbose", "Should debug output be enabled? You don't need to change this unless you really know what you need.");
-+        fileConfig.setComment("dont-touch-these-values-down-below.version", "DO NOT TOUCH THIS!!!");
++        fileConfig.setComment("verbose", " Should debug output be enabled? You don't need to change this unless you really know what you need.");
++        fileConfig.setComment("dont-touch-these-values-down-below.version", " DO NOT TOUCH THIS!!!");
 +
 +        // Performance settings
-+        fileConfig.setComment("performance.use-spigot-drops-merging-mechanism", "Should large drops stack should be merged into smaller drops stack?");
++        fileConfig.setComment("performance.use-spigot-drops-merging-mechanism", " Should large drops stack should be merged into smaller drops stack?");
 +
 +        // Bug-fixes settings
-+        fileConfig.setComment("bug-fixes.fix-tripwire-duping", "Should Paper's tripwire duping fix be enabled? By disabling this you are able to duping tripwires!");
++        fileConfig.setComment("bug-fixes.fix-tripwire-duping", " Should Paper's tripwire duping fix be enabled? By disabling this you are able to duping tripwires!");
 +
 +        // Misc settings
-+        fileConfig.setComment("misc.root-user-warning", "Should display warnings while this server is running on a root/administrator user?");
-+        fileConfig.setComment("misc.offline-mode-warning", "Should display warnings while this server is running in offline/insecure mode?");
-+        fileConfig.setComment("misc.proxy-unsafe-warning", "Should display warnings while this server is running in proxy mode?");
++        fileConfig.setComment("misc.root-user-warning", " Should display warnings while this server is running on a root/administrator user?");
++        fileConfig.setComment("misc.offline-mode-warning", " Should display warnings while this server is running in offline/insecure mode?");
++        fileConfig.setComment("misc.proxy-unsafe-warning", " Should display warnings while this server is running in proxy mode?");
 +    }
 +}
 diff --git a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
