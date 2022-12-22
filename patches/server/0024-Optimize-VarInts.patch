@@ -1,7 +1,7 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: astei <andrew@steinborn.me>
 Date: Sat, 1 Oct 2022 09:56:47 +0200
-Subject: [PATCH] PaperPR Optimize VarInts
+Subject: [PATCH] Optimize VarInts
 
 Original license: GPLv3
 Original project: https://github.com/PaperMC/Velocity
