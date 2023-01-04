@@ -78,3 +78,9 @@ dependencies {
 Unfortunately, the rules of our community haven't been finished yet. 
 
 So at this time, if you want to contribute, you need to talk with us on Discord or Tencent QQ.
+
+# Speacial Thanks To
+
+[<img src="https://user-images.githubusercontent.com/21148213/121807008-8ffc6700-cc52-11eb-96a7-2f6f260f8fda.png" alt="" width="150">](https://www.jetbrains.com)
+
+[JetBrains](https://www.jetbrains.com/), creators of the IntelliJ IDEA, supports KeYi with one of their [Open Source Licenses](https://www.jetbrains.com/opensource/). IntelliJ IDEA is the recommended IDE for working with KeYi, and most of the KeYi team uses it.
