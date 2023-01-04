@@ -79,7 +79,7 @@ Unfortunately, the rules of our community haven't been finished yet.
 
 So at this time, if you want to contribute, you need to talk with us on Discord or Tencent QQ.
 
-# Speacial Thanks To
+# Special Thanks To
 
 [<img src="https://user-images.githubusercontent.com/21148213/121807008-8ffc6700-cc52-11eb-96a7-2f6f260f8fda.png" alt="" width="150">](https://www.jetbrains.com)
 
