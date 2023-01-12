@@ -1,0 +1,39 @@
+name: build
+
+on: [ pull_request, push ]
+env:
+  MC_VERSION: "1.19.3"
+jobs:
+  build:
+    if: ${{ github.event_name != 'pull_request' || github.repository != github.event.pull_request.head.repo.full_name }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set env
+        run: |
+          echo "workflow=$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
+          echo "ref=$GITHUB_REF_NAME" >> $GITHUB_ENV
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Validate Gradle Wrapper"
+        uses: gradle/wrapper-validation-action@v1
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 17
+      - name: Configure Git
+        run: |
+          git config --global user.name "hlgmc"
+          git config --global user.email "ci@heleguo.cn"
+          chmod u+x gradlew
+      - name: Apply patches
+        run: |
+          ./gradlew -Dorg.gradle.jvmargs="-Dgraal.CompilerConfiguration=enterprise -Dgraal.UsePriorityInlining=true -Dgraal.Vectorization=true -Dgraal.OptDuplication=true --add-modules jdk.incubator.vector" applyPatches --stacktrace --no-daemon
+      - name: Build a paperclip jar
+        run: |
+          ./gradlew -Dorg.gradle.jvmargs="-Dgraal.CompilerConfiguration=enterprise -Dgraal.UsePriorityInlining=true -Dgraal.Vectorization=true -Dgraal.OptDuplication=true --add-modules jdk.incubator.vector" createReobfPaperclipJar --stacktrace --no-daemon
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: upload
+          path: ./*
